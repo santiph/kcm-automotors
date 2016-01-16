@@ -1,3 +1,5 @@
+# Manual build Triggers: 1
+
 # kcm-dashboard
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
