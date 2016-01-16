@@ -1,0 +1,22 @@
+types:
+  - build
+  - test
+  - deploy
+build:
+  script:
+    - 'npm install -g bower grunt-cli'
+    - 'bower install'
+  type: build
+  allow_failure: false
+tests:
+  script:
+    - "grunt test"
+  type: test
+  allow_failure: false
+grunt_rebuild:
+  script:
+    - "cd app"
+  type: deploy
+  only:
+    - develop
+  allow_failure: false
