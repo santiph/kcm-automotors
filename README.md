@@ -1,4 +1,5 @@
 # Manual build Triggers: 1
+[![Build Status](https://travis-ci.org/santiph/kcm-automotors.svg?branch=master)](https://travis-ci.org/santiph/kcm-automotors)
 
 # kcm-dashboard
 
