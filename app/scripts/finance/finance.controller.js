@@ -3,17 +3,17 @@
 
     /**
      * @ngdoc function
-     * @name kcmDashboardApp.controller:DashboardCtrl
+     * @name kcmDashboardApp.controller:FinanceCtrl
      * @description
-     * # DashboardCtrl
+     * # FinanceCtrl
      * Controller of the kcmDashboardApp
      */
     angular.module('kcmDashboardApp')
-        .controller('DashboardCtrl', function () {
+        .controller('FinanceCtrl', function () {
             this.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
                 'Karma'
             ];
-    });
+        });
 })();

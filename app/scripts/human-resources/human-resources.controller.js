@@ -3,17 +3,17 @@
 
     /**
      * @ngdoc function
-     * @name kcmDashboardApp.controller:DashboardCtrl
+     * @name kcmDashboardApp.controller:HumanResourcesCtrl
      * @description
-     * # DashboardCtrl
+     * # HumanResourcesCtrl
      * Controller of the kcmDashboardApp
      */
     angular.module('kcmDashboardApp')
-        .controller('DashboardCtrl', function () {
+        .controller('HumanResourcesCtrl', function () {
             this.awesomeThings = [
                 'HTML5 Boilerplate',
                 'AngularJS',
                 'Karma'
             ];
-    });
+        });
 })();
