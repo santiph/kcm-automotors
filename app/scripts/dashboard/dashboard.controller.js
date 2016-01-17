@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc function
- * @name kcmDashboardApp.controller:MainCtrl
+ * @name kcmDashboardApp.controller:DashboardCtrl
  * @description
  * # MainCtrl
  * Controller of the kcmDashboardApp
