@@ -17,7 +17,8 @@
             'ui.router',
             'ngSanitize',
             'ngTouch',
-            'pascalprecht.translate'
+            'pascalprecht.translate',
+            'kcmDashboardApp.kcm-footer'
             ])
         .config(configuration);
 
