@@ -4,8 +4,9 @@ types:
   - deploy
 build:
   script:
-    - 'npm install -g bower grunt-cli'
+    - 'npm install'
     - 'bower install'
+    - 'grunt build'
   type: build
   allow_failure: false
 tests:
