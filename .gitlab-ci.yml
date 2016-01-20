@@ -24,6 +24,7 @@ deploy:
     - 'npm install'
     - 'bower install'
     - 'grunt build'
+    - 'rm -f -r /srv/kcm-latest/*'
     - 'cp -r dist/. /srv/kcm-latest/'
   type: deploy
   only:
