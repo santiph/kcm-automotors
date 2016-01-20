@@ -9,7 +9,7 @@ build:
     - 'grunt build'
   type: build
   only:
-    - /^features-.*$/
+    - /^features/.*$/
   allow_failure: false
 #tests:
 #  script:
