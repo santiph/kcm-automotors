@@ -18,6 +18,7 @@
             'ngSanitize',
             'ngTouch',
             'pascalprecht.translate',
+            'kcmDashboardApp.kcm-header',
             'kcmDashboardApp.kcm-footer'
             ])
         .config(configuration);
