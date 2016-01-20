@@ -8,6 +8,8 @@ build:
     - 'bower install'
     - 'grunt build'
   type: build
+  only:
+    - /^features/.*$/
   allow_failure: false
 #tests:
 #  script:
@@ -19,7 +21,10 @@ build:
 #  allow_failure: false
 deploy:
   script:
-    - 'cp -r dist/* /srv/kcm-latest/'
+    - 'npm install'
+    - 'bower install'
+    - 'grunt build'
+    - 'cp -r dist/. /srv/kcm-latest/'
   type: deploy
   only:
     - develop
