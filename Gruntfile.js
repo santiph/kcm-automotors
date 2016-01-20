@@ -49,8 +49,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less','newer:copy:styles','autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -64,6 +64,20 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      }
+    },
+
+    // Process Less files and generate a css output.
+    less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files: {
+          '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.less'
+        }
       }
     },
 
@@ -385,11 +399,6 @@ module.exports = function (grunt) {
       styles: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/styles',
-          dest: '.tmp/styles/',
-          src: '{,*/}*.css'
-        }, {
-          expand: true,
           cwd: 'bower_components/font-awesome/css',
           dest: '.tmp/styles/',
           src: '{,*/}*.min.css'
@@ -463,6 +472,7 @@ module.exports = function (grunt) {
     'ngAnnotate',
     'copy:dist',
     'cdnify',
+    'less',
     'cssmin',
     'uglify',
     'filerev',
