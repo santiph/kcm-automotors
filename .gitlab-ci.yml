@@ -14,9 +14,9 @@ tests:
     - "grunt test"
   type: test
   allow_failure: false
-grunt_rebuild:
+deploy:
   script:
-    - "cd app"
+    - "cp -r dist/* /srv/kcm-latest/"
   type: deploy
   only:
     - develop
