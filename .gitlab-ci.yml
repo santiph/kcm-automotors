@@ -21,3 +21,9 @@ deploy:
   only:
     - develop
   allow_failure: false
+cache:
+  untracked: true
+  paths:
+  - node_modules/
+  - bower_components/
+  - dist/
