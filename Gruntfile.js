@@ -54,11 +54,7 @@ module.exports = function (grunt) {
 //      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
-        tasks: ['less','newer:copy:styles','autoprefixer'],
-        options: {
-          nospawn: true,
-          livereload: true
-        }
+        tasks: ['less','newer:copy:styles','autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -483,7 +479,7 @@ module.exports = function (grunt) {
     'less',
     'cssmin',
     'uglify',
-    //'filerev', //Disable on development. Reenable on production
+    'filerev', //Disable on development. Reenable on production
     'usemin',
     'htmlmin'
   ]);
