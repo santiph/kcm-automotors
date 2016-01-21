@@ -19,7 +19,8 @@
             'ngTouch',
             'pascalprecht.translate',
             'kcmDashboardApp.kcm-header',
-            'kcmDashboardApp.kcm-footer'
+            'kcmDashboardApp.kcm-footer',
+            'kcmDashboardApp.kcm-menu'
             ])
         .config(configuration);
 
