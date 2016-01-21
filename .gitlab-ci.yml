@@ -4,19 +4,35 @@ types:
   - deploy
 build:
   script:
-    - 'npm install -g bower grunt-cli'
+    - 'npm install'
     - 'bower install'
+    - 'grunt build'
   type: build
+  only:
+    - /^features/.*$/
   allow_failure: false
-tests:
+#tests:
+#  script:
+#    - 'npm install'
+#    - 'bower install'
+#    - 'grunt build'
+#    - 'grunt test'
+#  type: test
+#  allow_failure: false
+deploy:
   script:
-    - "grunt test"
-  type: test
-  allow_failure: false
-grunt_rebuild:
-  script:
-    - "cd app"
+    - 'npm install'
+    - 'bower install'
+    - 'grunt build'
+    - 'rm -f -r /srv/kcm-latest/*'
+    - 'cp -r dist/. /srv/kcm-latest/'
   type: deploy
   only:
     - develop
   allow_failure: false
+cache:
+  untracked: true
+  paths:
+  - node_modules/
+  - bower_components/
+  - dist/
