@@ -338,7 +338,7 @@ module.exports = function (grunt) {
           usemin: 'scripts/scripts.js'
         },
         cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
+        src: 'scripts/{,*/}*.html',
         dest: '.tmp/templateCache.js'
       }
     },
@@ -433,7 +433,6 @@ module.exports = function (grunt) {
 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
-    console.log(target);
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
