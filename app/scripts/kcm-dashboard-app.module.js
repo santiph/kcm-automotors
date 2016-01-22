@@ -20,7 +20,8 @@
             'pascalprecht.translate',
             'kcmDashboardApp.kcm-header',
             'kcmDashboardApp.kcm-footer',
-            'kcmDashboardApp.kcm-menu'
+            'kcmDashboardApp.kcm-menu',
+            'kcmDashboardApp.services.employees'
             ])
         .config(configuration);
 
