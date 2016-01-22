@@ -15,7 +15,7 @@
         function getAllEmployees() {
 
             return $http({
-                method: 'GET',
+                method: 'JSONP',
                 url: 'http://www.mocky.io/v2/56a2898d0f00008545a0f390'
             });
         }
