@@ -21,7 +21,9 @@
             'kcmDashboardApp.kcm-header',
             'kcmDashboardApp.kcm-footer',
             'kcmDashboardApp.kcm-menu',
-            'kcmDashboardApp.services.employees'
+            'kcmDashboardApp.services.employees',
+            'chart.js',
+            'checklist-model'
             ])
         .config(configuration);
 

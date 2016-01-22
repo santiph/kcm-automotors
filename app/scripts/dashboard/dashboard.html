@@ -1,5 +1,17 @@
 <div class="row">
-  <ul class="col-xs-12">
-    <li ng-repeat="employee in dashboardVm.employees">{{employee.name|json}}</li>
-  </ul>
+    <div class="col-xs-12">
+        <canvas id="sales-consultants" class="chart chart-line col-md-8" chart-data="dashboardVm.charts.sales.data" chart-labels="dashboardVm.charts.sales.labels" chart-legend="true" chart-series="dashboardVm.charts.sales.series" chart-click="dashboardVm.charts.sales.onClick" ></canvas>
+        <div class="col-md-4">
+            <label ng-repeat="employee in dashboardVm.employees | filter:'typeSales':true">
+                <input type="checkbox" data-checklist-model="dashboardVm.selectedEmployees" data-checklist-value="employee"> {{::employee.name.first + ' ' + employee.name.last}}
+            </label>
+
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <canvas id="service-engineers" class="chart chart-line" chart-data="dashboardVm.charts.engineer.data" chart-labels="dashboardVm.charts.engineer.labels" chart-legend="true" chart-series="dashboardVm.charts.engineer.series" chart-click="dashboardVm.charts.engineer.onClick" ></canvas>
+    </div>
+    <ul class="col-xs-12">
+        <li ng-repeat="employee in dashboardVm.employees">{{employee.name|json}}</li>
+    </ul>
 </div>
