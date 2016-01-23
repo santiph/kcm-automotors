@@ -1,17 +1,81 @@
-<div class="row">
-    <div class="col-xs-12">
-        <canvas id="sales-consultants" class="chart chart-line col-md-8" chart-data="dashboardVm.charts.sales.data" chart-labels="dashboardVm.charts.sales.labels" chart-legend="true" chart-series="dashboardVm.charts.sales.series" chart-click="dashboardVm.charts.sales.onClick" ></canvas>
-        <div class="col-md-4">
-            <label ng-repeat="employee in dashboardVm.employees | filter:'typeSales':true">
-                <input type="checkbox" data-checklist-model="dashboardVm.selectedEmployees" data-checklist-value="employee"> {{::employee.name.first + ' ' + employee.name.last}}
-            </label>
+<h2>Sales Consultants Report</h2>
+<form name="salesForm">
+    <div class="row">
+        <div class="col-xs-6">
+            <label>Start Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{::dashboardVm.datepicker.format}}" ng-model="dashboardVm.datepicker.sales.startDate.model" is-open="dashboardVm.datepicker.sales.startDate.isOpen" max-date="dashboardVm.datepicker.sales.maxDate" min-date="dashboardVm.datepicker.sales.minDate" date-disabled="dashboardVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="dashboardVm.datepicker.sales.startDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
 
+        <div class="col-xs-6">
+            <label>End Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{::dashboardVm.datepicker.format}}" ng-model="dashboardVm.datepicker.sales.endDate.model" is-open="dashboardVm.datepicker.sales.endDate.isOpen" min-date="dashboardVm.datepicker.sales.minDate" max-date="dashboardVm.datepicker.sales.maxDate" date-disabled="dashboardVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="dashboardVm.datepicker.sales.endDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
         </div>
     </div>
-    <div class="col-xs-12">
-        <canvas id="service-engineers" class="chart chart-line" chart-data="dashboardVm.charts.engineer.data" chart-labels="dashboardVm.charts.engineer.labels" chart-legend="true" chart-series="dashboardVm.charts.engineer.series" chart-click="dashboardVm.charts.engineer.onClick" ></canvas>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <canvas id="sales-consultants" class="chart chart-line" chart-data="dashboardVm.charts.sales.data" chart-labels="dashboardVm.charts.sales.labels" chart-legend="true" chart-series="dashboardVm.charts.sales.series" chart-click="dashboardVm.charts.sales.onClick" ></canvas>
+                </div>
+                <div class="col-md-4">
+                    <h3>Sales Consultants</h3>
+                    <label ng-repeat="employee in dashboardVm.salesEmployees">
+                        <input type="checkbox" data-checklist-model="dashboardVm.selectedSalesEmployees" data-checklist-value="employee" ng-disabled="!checked && dashboardVm.selectedSalesEmployees.length > 3"> {{::employee.name.first + ' ' + employee.name.last}}
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
-    <ul class="col-xs-12">
-        <li ng-repeat="employee in dashboardVm.employees">{{employee.name|json}}</li>
-    </ul>
-</div>
+</form>
+<hr>
+<h2>Service Engineers Report</h2>
+
+
+<form name="serviceForm">
+    <div class="row">
+        <div class="col-xs-6">
+            <label>Start Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{::dashboardVm.datepicker.format}}" ng-model="dashboardVm.datepicker.service.startDate.model" is-open="dashboardVm.datepicker.service.startDate.isOpen" max-date="dashboardVm.datepicker.service.maxDate" min-date="dashboardVm.datepicker.service.minDate" date-disabled="dashboardVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="dashboardVm.datepicker.service.startDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+
+        <div class="col-xs-6">
+            <label>End Date</label>
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{::dashboardVm.datepicker.format}}" ng-model="dashboardVm.datepicker.service.endDate.model" is-open="dashboardVm.datepicker.service.endDate.isOpen" min-date="dashboardVm.datepicker.service.minDate" max-date="dashboardVm.datepicker.service.maxDate" date-disabled="dashboardVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="dashboardVm.datepicker.service.endDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <canvas id="service-engineers" class="chart chart-line" chart-data="dashboardVm.charts.engineer.data" chart-labels="dashboardVm.charts.engineer.labels" chart-legend="true" chart-series="dashboardVm.charts.engineer.series" chart-click="dashboardVm.charts.engineer.onClick" ></canvas>
+                </div>
+                <div class="col-md-4">
+                    <h3>Service Engineers</h3>
+                    <label ng-repeat="employee in dashboardVm.serviceEmployees">
+                        <input type="checkbox" data-checklist-model="dashboardVm.selectedServiceEmployees" data-checklist-value="employee" ng-disabled="!checked && dashboardVm.selectedServiceEmployees.length > 3"> {{::employee.name.first + ' ' + employee.name.last}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

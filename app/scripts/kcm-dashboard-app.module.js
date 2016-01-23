@@ -1,4 +1,4 @@
-(function() {
+(function(_) {
     'use strict';
 
     /**
@@ -23,9 +23,12 @@
             'kcmDashboardApp.kcm-menu',
             'kcmDashboardApp.services.employees',
             'chart.js',
-            'checklist-model'
-            ])
-        .config(configuration);
+            'checklist-model',
+            'ui.bootstrap'
+        ])
+        .config(configuration)
+        // lodash support
+        .constant('_', _);
 
     configuration.$inject = ['$stateProvider', '$urlRouterProvider', '$translateProvider'];
 
@@ -106,4 +109,4 @@
             $translateProvider.useSanitizeValueStrategy('escaped');
         }
     }
-})();
+})(_);
