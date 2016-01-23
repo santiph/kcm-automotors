@@ -12,7 +12,7 @@
         .controller('DashboardCtrl', DashboardCtrl);
 
     // @ngInject
-    function DashboardCtrl($scope, employeesFactory) {
+    function DashboardCtrl($scope, employeesFactory, $translate) {
         var controller = this;
 
         //Populate employees collection
@@ -27,6 +27,25 @@
             }
         ).finally(processEmployees);
 
+        controller.updateChart = function(chart, employee, checked) {
+            if (controller.selectedSalesEmployees.length === 0) {
+                chart.labels = [];
+                $translate('dashboard.charts.noEmployeeSelected').then(function (translation) {
+                    chart.series = [translation];
+                });
+                chart.data = [[0]];
+            } else {
+                var newSeries = [],
+                    newData = [];
+                angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
+                    newSeries.push(employee.name.last + ', ' + employee.name.first);
+                    newData.push([65, 59, 80, 81, 56, 55, 40]);
+                });
+                chart.series = newSeries;
+                chart.data = newData;
+            }
+        };
+
         function processEmployees(employeesCollection) {
             controller.salesEmployees = _.filter(controller.employees, function(employee) {
                 return employee.typeSales;
@@ -40,30 +59,27 @@
             //Charts logic
             controller.charts = {
                 'sales': {
-                    'series': [
-                        controller.employees[0].name.first + ' ' + controller.employees[0].name.last, 'Series B'
-                    ],
-                    'data': [
-                        [65, 59, 80, 81, 56, 55, 40],
-                        [28, 48, 40, 19, 86, 27, 90]
-                    ],
-                    'labels': ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    'series': [],
+                    'data': [[0]],
+                    'labels': [],
                     'onClick': function (points, evt) {
                         console.log(points, evt);
                     }
                 },
                 'engineer': {
-                    'series': ['Series A', 'Series B'],
-                    'data': [
-                        [28, 48, 40, 19, 86, 27, 90],
-                        [65, 59, 80, 81, 56, 55, 40]
-                    ],
-                    'labels': ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    'series': [],
+                    'data': [[0]],
+                    'labels': [],
                     'onClick': function (points, evt) {
                         console.log(points, evt);
                     }
                 }
             };
+
+            $translate('dashboard.charts.noEmployeeSelected').then(function (translation) {
+                controller.charts.sales.series = [translation];
+                controller.charts.engineer.series = [translation];
+            });
         }
 
         controller.datepicker = {

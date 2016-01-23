@@ -86,19 +86,35 @@
         function configureTranslate() {
             $translateProvider.translations('en', {
                 'dashboard': {
-                    'options': {
-                        'dashboard': 'Dashboard',
-                        'finance': 'Finance',
-                        'reporting': 'Reporting',
-                        'humanResources': 'Human Resources',
-                        'support': 'Support'
+                    'salesReport': {
+                        'title': 'Sales Consultants Report',
+                        'list': 'Sales Consultants'
+                    },
+                    'serviceReport': {
+                        'title': 'Service Engineers Report',
+                        'list': 'Service Engineers'
+                    },
+                    'charts': {
+                        'startDate': 'Start Date',
+                        'endDate': 'End Date',
+                        'noEmployeeSelected': 'Please, select an employee'
                     }
                 },
                 'header': {
+                    'title': 'KCM Automotors',
                     'search': {
                         'placeholder': 'Search...',
                         'button': 'Go!'
                     }
+                },
+                'menu': {
+                    'home': 'Home',
+                    'about': 'About',
+                    'dashboard': 'Dashboard',
+                    'finance': 'Finance',
+                    'reporting': 'Reporting',
+                    'humanResources': 'Human Resources',
+                    'support': 'Support'
                 },
                 'footer': {
                     'copyright': 'KCM Automotors - 2016'
