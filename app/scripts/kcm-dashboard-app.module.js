@@ -1,4 +1,4 @@
-(function() {
+(function(_) {
     'use strict';
 
     /**
@@ -20,9 +20,15 @@
             'pascalprecht.translate',
             'kcmDashboardApp.kcm-header',
             'kcmDashboardApp.kcm-footer',
-            'kcmDashboardApp.kcm-menu'
-            ])
-        .config(configuration);
+            'kcmDashboardApp.kcm-menu',
+            'kcmDashboardApp.services.employees',
+            'chart.js',
+            'checklist-model',
+            'ui.bootstrap'
+        ])
+        .config(configuration)
+        // lodash support
+        .constant('_', _);
 
     configuration.$inject = ['$stateProvider', '$urlRouterProvider', '$translateProvider'];
 
@@ -80,19 +86,35 @@
         function configureTranslate() {
             $translateProvider.translations('en', {
                 'dashboard': {
-                    'options': {
-                        'dashboard': 'Dashboard',
-                        'finance': 'Finance',
-                        'reporting': 'Reporting',
-                        'humanResources': 'Human Resources',
-                        'support': 'Support'
+                    'salesReport': {
+                        'title': 'Sales Consultants Report',
+                        'list': 'Sales Consultants'
+                    },
+                    'serviceReport': {
+                        'title': 'Service Engineers Report',
+                        'list': 'Service Engineers'
+                    },
+                    'charts': {
+                        'startDate': 'Start Date',
+                        'endDate': 'End Date',
+                        'noEmployeeSelected': 'Please, select an employee'
                     }
                 },
                 'header': {
+                    'title': 'KCM Automotors',
                     'search': {
                         'placeholder': 'Search...',
                         'button': 'Go!'
                     }
+                },
+                'menu': {
+                    'home': 'Home',
+                    'about': 'About',
+                    'dashboard': 'Dashboard',
+                    'finance': 'Finance',
+                    'reporting': 'Reporting',
+                    'humanResources': 'Human Resources',
+                    'support': 'Support'
                 },
                 'footer': {
                     'copyright': 'KCM Automotors - 2016'
@@ -103,4 +125,4 @@
             $translateProvider.useSanitizeValueStrategy('escaped');
         }
     }
-})();
+})(_);
