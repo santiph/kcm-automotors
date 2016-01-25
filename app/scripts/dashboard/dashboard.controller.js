@@ -131,18 +131,12 @@
 
                     var salesPerMonth = [];
 
-                    // var salesAmounts = [],
-                    //     salesPerMonth = [];
-
                     $translate(
                         'dashboard.charts.employeeNameSerie',
                         {last: employee.name.last, first: employee.name.first}
                     ).then(function (translation) {
                         selectedEmployeesNames.push(translation);
                     });
-
-                    // selectedEmployeesNames.push(employee.name.last + ', ' + employee.name.fist);
-
 
                     angular.forEach(employee.sales, function(sale, key) {
                         var saleDate = new Date(sale.date);
@@ -162,23 +156,7 @@
                             salesPerMonth[saleDate.getFullYear()] = [];
                             salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] = sale.revenue;
                         }
-
-                        // var saleDate = new Date(sale.date),
-                        //     saleYearMonth = saleDate.getFullYear().toString() + saleDate.getMonth().toString();
-
-                        // if (salesPerMonth[saleYearMonth]) {
-                        //     salesPerMonth[saleYearMonth] = salesPerMonth[saleYearMonth] + sale.revenue;
-                        // } else {
-                        //     salesPerMonth[saleYearMonth] = sale.revenue;
-
-                        //     salesPeriods[saleYearMonth] = {
-                        //         'month': saleDate.getMonth(),
-                        //         'year': saleDate.getFullYear()
-                        //     };
-                        // }
                     });
-                    // newData.push(salesPerMonth);
-
                     employeesSales.push(salesPerMonth);
                 });
 
