@@ -24,7 +24,8 @@
             'kcmDashboardApp.services.employees',
             'chart.js',
             'checklist-model',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'angular-loading-bar'
         ])
         .config(configuration)
         // lodash support
@@ -97,7 +98,22 @@
                     'charts': {
                         'startDate': 'Start Date',
                         'endDate': 'End Date',
-                        'noEmployeeSelected': 'Please, select an employee'
+                        'noEmployeeSelected': 'Please, select an employee',
+                        'employeeNameSerie': '{{::last}}, {{::first}}',
+                        'months': {
+                            '0': 'January {{year}}',
+                            '1': 'February {{year}}',
+                            '2': 'March {{year}}',
+                            '3': 'April {{year}}',
+                            '4': 'May {{year}}',
+                            '5': 'June {{year}}',
+                            '6': 'July {{year}}',
+                            '7': 'August {{year}}',
+                            '8': 'September {{year}}',
+                            '9': 'October {{year}}',
+                            '10': 'November {{year}}',
+                            '11': 'December {{year}}'
+                        }
                     }
                 },
                 'header': {

@@ -1,24 +1,37 @@
-/* make sidebar nav vertical */ 
+/* make sidebar nav vertical */
+@redColor: #e33a2b;
+@whiteColor: #FFFFFF;
+
 @media (min-width: 768px) {
-    .sidebar-nav {
-        .navbar {
-            .navbar-collapse {
-                max-height: none;
-                padding: 0;
-            }
-            ul {
-                float: none;
-                &:not {
-                    display: block;
-                }
-            }
-            li {
+    .sidebar-nav .nav-pills {
+        .navbar-collapse {
+            max-height: none;
+            padding: 0;
+        }
+        ul {
+            float: none;
+            &:not {
                 display: block;
-                float: none;
-                a {
-                    padding-bottom: 12px;
-                    padding-top: 12px;
+            }
+        }
+        li {
+            display: block;
+            float: none;
+            a {
+                color: @redColor;
+                padding-bottom: 12px;
+                padding-top: 12px;
+                &:hover {
+                    background-color: @redColor;
+                    color: @whiteColor;
                 }
+            }
+
+            &.active a,
+            &.active a:hover
+            &.active a:focus {
+                background-color: @redColor;
+                color: @whiteColor;
             }
         }
     }
