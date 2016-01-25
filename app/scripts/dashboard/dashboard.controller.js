@@ -124,7 +124,8 @@
                 var employeeSalesDates = [],
                     employeesSales = [],
                     minDate,
-                    maxDate;
+                    maxDate,
+                    selectedEmployeesNames = [];
 
                 angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
 
@@ -132,7 +133,15 @@
 
                     // var salesAmounts = [],
                     //     salesPerMonth = [];
-                    //newSeries.push(employee.name.last + ', ' + employee.name.first);
+
+                    $translate(
+                        'dashboard.charts.employeeNameSerie',
+                        {last: employee.name.last, first: employee.name.first}
+                    ).then(function (translation) {
+                        selectedEmployeesNames.push(translation);
+                    });
+
+                    // selectedEmployeesNames.push(employee.name.last + ', ' + employee.name.fist);
 
 
                     angular.forEach(employee.sales, function(sale, key) {
@@ -176,7 +185,7 @@
 
                 minDate = getMinDate(employeeSalesDates);
                 maxDate = getMaxDate(employeeSalesDates);
-                // chart.series = getUpdatedSeries();
+                chart.series = selectedEmployeesNames;
                 chart.labels = getUpdatedLabels(minDate, maxDate);
                 chart.data = getUpdatedData(employeesSales, minDate, maxDate);
             }
