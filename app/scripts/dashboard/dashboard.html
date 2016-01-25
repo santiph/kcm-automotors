@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-4">
                     <h3 translate>{{::'dashboard.salesReport.list'}}</h3>
-                    <div class="employee-list">
+                    <div class="pre-scrollable">
                         <label ng-repeat="employee in dashboardVm.salesEmployees | orderBy:'name.last'">
                             <input type="checkbox"
                                 data-checklist-model="dashboardVm.selectedSalesEmployees"
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-md-4">
                     <h3 translate>{{::'dashboard.serviceReport.list'}}</h3>
-                    <div class="employee-list">
+                    <div class="pre-scrollable">
                         <label ng-repeat="employee in dashboardVm.serviceEmployees | orderBy:'name.last'">
                             <input type="checkbox" data-checklist-model="dashboardVm.selectedServiceEmployees" data-checklist-value="employee" ng-disabled="!checked && dashboardVm.selectedServiceEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
                         </label>
