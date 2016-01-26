@@ -85,6 +85,7 @@
                 'sales': {
                     'series': [],
                     'data': [[0]],
+                    'totalSales': [0],
                     'labels': [],
                     'onClick': function (points, evt) {
                         console.log(points, evt);
@@ -93,6 +94,7 @@
                 'engineer': {
                     'series': [],
                     'data': [[0]],
+                    'totalRepairs': [0],
                     'labels': [],
                     'onClick': function (points, evt) {
                         console.log(points, evt);
@@ -103,6 +105,8 @@
             $translate('reports.charts.noEmployeeSelected').then(function (translation) {
                 controller.charts.sales.series = [translation];
                 controller.charts.engineer.series = [translation];
+                controller.charts.sales.labels = [translation];
+                controller.charts.engineer.labels = [translation];
             });
         }
 
@@ -122,19 +126,18 @@
                         chart.series = [translation];
                     });
                     chart.data = [[0]];
+                    chart.totalSales = [0];
 
                 //Re-calculate chart values from selcted employees collections.
                 } else {
-                    var newSeries = [],
-                        newData = [],
-                        salesPeriods = [];
-
                     var employeeSalesDates = [],
-                        employeesSales = [];
+                        employeesSales = [],
+                        totalSalesPerEmployee = [];
 
                     angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
 
-                        var salesPerMonth = [];
+                        var salesPerMonth = [],
+                            totalSalesAmount = 0;
 
                         $translate(
                             'reports.charts.employeeNameSerie',
@@ -150,6 +153,7 @@
                             if (typeof sale.revenue !== 'number') {
                                 sale.revenue = parseFloat(sale.revenue.replace(/\$|,|/g, ''));
                             }
+                            totalSalesAmount += sale.revenue;
 
                             if (salesPerMonth[saleDate.getFullYear()]) {
                                 if (salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()]) {
@@ -163,6 +167,7 @@
                             }
                         });
                         employeesSales.push(salesPerMonth);
+                        totalSalesPerEmployee.push(totalSalesAmount);
                     });
 
 
@@ -171,6 +176,7 @@
                     chart.series = selectedEmployeesNames;
                     chart.labels = getUpdatedLabels(minDate, maxDate);
                     chart.data = getUpdatedDataForSales(employeesSales, minDate, maxDate);
+                    chart.totalSales = totalSalesPerEmployee;
                 }
 
             // Is employee a Service Engineer?
@@ -183,15 +189,18 @@
                         chart.series = [translation];
                     });
                     chart.data = [[0]];
+                    chart.totalRepairs = [0];
 
                 //Re-calculate chart values from selcted employees collections.
                 } else {
                     var employeeRepairsDates = [],
-                        employeesRepairs = [];
+                        employeesRepairs = [],
+                        totalRepairsPerEmployee = [];
 
                     angular.forEach(controller.selectedServiceEmployees, function(employee, key) {
 
-                        var salesPerMonth = [];
+                        var repairsPerMonth = [],
+                            totalRepairs = 0;
 
                         $translate(
                             'reports.charts.employeeNameSerie',
@@ -204,18 +213,20 @@
                             var repairDate = new Date(repair.date);
                             employeeRepairsDates.push(repairDate);
 
-                            if (salesPerMonth[repairDate.getFullYear()]) {
-                                if (salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()]) {
-                                    salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] += repair.cars;
+                            totalRepairs += repair.cars;
+                            if (repairsPerMonth[repairDate.getFullYear()]) {
+                                if (repairsPerMonth[repairDate.getFullYear()][repairDate.getMonth()]) {
+                                    repairsPerMonth[repairDate.getFullYear()][repairDate.getMonth()] += repair.cars;
                                 } else {
-                                    salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
+                                    repairsPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
                                 }
                             } else {
-                                salesPerMonth[repairDate.getFullYear()] = [];
-                                salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
+                                repairsPerMonth[repairDate.getFullYear()] = [];
+                                repairsPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
                             }
                         });
-                        employeesRepairs.push(salesPerMonth);
+                        employeesRepairs.push(repairsPerMonth);
+                        totalRepairsPerEmployee.push(totalRepairs);
                     });
 
 
@@ -224,6 +235,7 @@
                     chart.series = selectedEmployeesNames;
                     chart.labels = getUpdatedLabels(minDate, maxDate);
                     chart.data = getUpdatedDataForService(employeesRepairs, minDate, maxDate);
+                    chart.totalRepairs = totalRepairsPerEmployee;
                 }
             }
         };

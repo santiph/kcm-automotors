@@ -27,9 +27,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="row">
-                        <div class="col-md-8">
-                            <canvas id="sales-consultants" class="chart chart-line" chart-data="reportingVm.charts.sales.data" chart-labels="reportingVm.charts.sales.labels" chart-legend="true" chart-series="reportingVm.charts.sales.series" chart-click="reportingVm.charts.sales.onClick" ></canvas>
-                        </div>
                         <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -46,6 +43,17 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-8">
+                            <canvas id="sales-consultants" class="chart chart-line" chart-data="reportingVm.charts.sales.data" chart-labels="reportingVm.charts.sales.labels" chart-legend="true" chart-series="reportingVm.charts.sales.series" chart-click="reportingVm.charts.sales.onClick" ></canvas>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 translate>{{::'reports.salesReport.total'}}</h3>
+                            <canvas id="sales-consultants-pie"
+                                class="chart chart-pie"
+                                chart-data="reportingVm.charts.sales.totalSales"
+                                chart-labels="reportingVm.charts.sales.series">
+                            </canvas>
                         </div>
                     </div>
                 </div>
@@ -81,9 +89,6 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="row">
-                        <div class="col-md-8">
-                            <canvas id="service-engineers" class="chart chart-line" chart-data="reportingVm.charts.engineer.data" chart-labels="reportingVm.charts.engineer.labels" chart-legend="true" chart-series="reportingVm.charts.engineer.series" chart-click="reportingVm.charts.engineer.onClick" ></canvas>
-                        </div>
                         <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -100,6 +105,17 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-8">
+                            <canvas id="service-engineers" class="chart chart-line" chart-data="reportingVm.charts.engineer.data" chart-labels="reportingVm.charts.engineer.labels" chart-legend="true" chart-series="reportingVm.charts.engineer.series" chart-click="reportingVm.charts.engineer.onClick" ></canvas>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 translate>{{::'reports.serviceReport.total'}}</h3>
+                            <canvas id="sales-consultants-pie"
+                                class="chart chart-pie"
+                                chart-data="reportingVm.charts.engineer.totalRepairs"
+                                chart-labels="reportingVm.charts.engineer.series">
+                            </canvas>
                         </div>
                     </div>
                 </div>
