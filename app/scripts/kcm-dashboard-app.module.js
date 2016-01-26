@@ -87,6 +87,7 @@
         function configureTranslate() {
             $translateProvider.translations('en', {
                 'reports': {
+                    'title': 'Reports page',
                     'salesReport': {
                         'title': 'Sales Consultants Report',
                         'list': 'Sales Consultants'
@@ -117,6 +118,7 @@
                     }
                 },
                 'dashboard': {
+                    'title': 'General Dashboard Page',
                     'salesReport': {
                         'title': 'Sales Consultants Report',
                         'list': 'Sales Consultants'
@@ -145,6 +147,18 @@
                             '11': 'December {{year}}'
                         }
                     }
+                },
+                'about': {
+                    'title': 'About Page'
+                },
+                'human-resources': {
+                    'title': 'Human Resources Page'
+                },
+                'support': {
+                    'title': 'Support Page'
+                },
+                'finance': {
+                    'title': 'Finance Page'
                 },
                 'header': {
                     'title': 'KCM Automotors',
