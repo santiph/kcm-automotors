@@ -107,69 +107,157 @@
         }
 
         controller.updateChart = function(chart, employee, checked) {
-            //When no employee is selected, use default values
-            if (controller.selectedSalesEmployees.length === 0) {
-                chart.labels = [''];
-                $translate('reports.charts.noEmployeeSelected').then(function (translation) {
-                    chart.series = [translation];
-                });
-                chart.data = [[0]];
+            // Is employee a Sales Consultant?
+            if (employee.typeSales) {
 
-            //Re-calculate chart values from selcted employees collections.
-            } else {
-                var newSeries = [],
-                    newData = [],
-                    salesPeriods = [];
-
-                var employeeSalesDates = [],
-                    employeesSales = [],
-                    minDate,
-                    maxDate,
-                    selectedEmployeesNames = [];
-
-                angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
-
-                    var salesPerMonth = [];
-
-                    $translate(
-                        'reports.charts.employeeNameSerie',
-                        {last: employee.name.last, first: employee.name.first}
-                    ).then(function (translation) {
-                        selectedEmployeesNames.push(translation);
+                //When no employee is selected, use default values
+                if (controller.selectedSalesEmployees.length === 0) {
+                    chart.labels = [''];
+                    $translate('reports.charts.noEmployeeSelected').then(function (translation) {
+                        chart.series = [translation];
                     });
+                    chart.data = [[0]];
 
-                    angular.forEach(employee.sales, function(sale, key) {
-                        var saleDate = new Date(sale.date);
-                        employeeSalesDates.push(saleDate);
+                //Re-calculate chart values from selcted employees collections.
+                } else {
+                    var newSeries = [],
+                        newData = [],
+                        salesPeriods = [];
 
-                        if (typeof sale.revenue !== 'number') {
-                            sale.revenue = parseFloat(sale.revenue.replace(/\$|,|/g, ''));
-                        }
+                    var employeeSalesDates = [],
+                        employeesSales = [],
+                        minDate,
+                        maxDate,
+                        selectedEmployeesNames = [];
 
-                        if (salesPerMonth[saleDate.getFullYear()]) {
-                            if (salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()]) {
-                                salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] += sale.revenue;
+                    angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
+
+                        var salesPerMonth = [];
+
+                        $translate(
+                            'reports.charts.employeeNameSerie',
+                            {last: employee.name.last, first: employee.name.first}
+                        ).then(function (translation) {
+                            selectedEmployeesNames.push(translation);
+                        });
+
+                        angular.forEach(employee.sales, function(sale, key) {
+                            var saleDate = new Date(sale.date);
+                            employeeSalesDates.push(saleDate);
+
+                            if (typeof sale.revenue !== 'number') {
+                                sale.revenue = parseFloat(sale.revenue.replace(/\$|,|/g, ''));
+                            }
+
+                            if (salesPerMonth[saleDate.getFullYear()]) {
+                                if (salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()]) {
+                                    salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] += sale.revenue;
+                                } else {
+                                    salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] = sale.revenue;
+                                }
                             } else {
+                                salesPerMonth[saleDate.getFullYear()] = [];
                                 salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] = sale.revenue;
                             }
-                        } else {
-                            salesPerMonth[saleDate.getFullYear()] = [];
-                            salesPerMonth[saleDate.getFullYear()][saleDate.getMonth()] = sale.revenue;
-                        }
+                        });
+                        employeesSales.push(salesPerMonth);
                     });
-                    employeesSales.push(salesPerMonth);
-                });
 
 
-                minDate = getMinDate(employeeSalesDates);
-                maxDate = getMaxDate(employeeSalesDates);
-                chart.series = selectedEmployeesNames;
-                chart.labels = getUpdatedLabels(minDate, maxDate);
-                chart.data = getUpdatedData(employeesSales, minDate, maxDate);
+                    minDate = getMinDate(employeeSalesDates);
+                    maxDate = getMaxDate(employeeSalesDates);
+                    chart.series = selectedEmployeesNames;
+                    chart.labels = getUpdatedLabels(minDate, maxDate);
+                    chart.data = getUpdatedDataForSales(employeesSales, minDate, maxDate);
+                }
+
+            // Is employee a Service Engineer?
+            } else {
+
+                //When no employee is selected, use default values
+                if (controller.selectedServiceEmployees.length === 0) {
+                    chart.labels = [''];
+                    $translate('reports.charts.noEmployeeSelected').then(function (translation) {
+                        chart.series = [translation];
+                    });
+                    chart.data = [[0]];
+
+                //Re-calculate chart values from selcted employees collections.
+                } else {
+                    var employeeRepairsDates = [],
+                        employeesRepairs = [],
+                        minDate,
+                        maxDate,
+                        selectedEmployeesNames = [];
+
+                    angular.forEach(controller.selectedServiceEmployees, function(employee, key) {
+
+                        var salesPerMonth = [];
+
+                        $translate(
+                            'reports.charts.employeeNameSerie',
+                            {last: employee.name.last, first: employee.name.first}
+                        ).then(function (translation) {
+                            selectedEmployeesNames.push(translation);
+                        });
+
+                        angular.forEach(employee.repairs, function(repair, key) {
+                            var repairDate = new Date(repair.date);
+                            employeeRepairsDates.push(repairDate);
+
+                            if (salesPerMonth[repairDate.getFullYear()]) {
+                                if (salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()]) {
+                                    salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] += repair.cars;
+                                } else {
+                                    salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
+                                }
+                            } else {
+                                salesPerMonth[repairDate.getFullYear()] = [];
+                                salesPerMonth[repairDate.getFullYear()][repairDate.getMonth()] = repair.cars;
+                            }
+                        });
+                        employeesRepairs.push(salesPerMonth);
+                    });
+
+
+                    minDate = getMinDate(employeeRepairsDates);
+                    maxDate = getMaxDate(employeeRepairsDates);
+                    chart.series = selectedEmployeesNames;
+                    chart.labels = getUpdatedLabels(minDate, maxDate);
+                    chart.data = getUpdatedDataForService(employeesRepairs, minDate, maxDate);
+                }
             }
         };
 
-        function getUpdatedData(employeesSales, minDate, maxDate) {
+        function getUpdatedDataForService(employeesRepairs, minDate, maxDate) {
+            var totalMonths = monthDiff(minDate, maxDate),
+                chartData = [];
+
+            employeesRepairs.forEach(function(employeeRepairs, employeeKey) {
+                var repairsCount = [],
+                    minDateAux = new Date(minDate);
+
+                for (var month = 0; month < totalMonths; month++) {
+
+                    if (employeeRepairs[minDateAux.getFullYear()] == null) {
+                        employeeRepairs[minDateAux.getFullYear()] = [];
+                        employeeRepairs[minDateAux.getFullYear()][minDateAux.getMonth()] = 0;
+                    } else {
+                        if (employeeRepairs[minDateAux.getFullYear()][minDateAux.getMonth()] == null) {
+                            employeeRepairs[minDateAux.getFullYear()][minDateAux.getMonth()] = 0;
+                        }
+                    }
+
+                    repairsCount.push(employeeRepairs[minDateAux.getFullYear()][minDateAux.getMonth()]);
+                    minDateAux.setMonth(minDateAux.getMonth() + 1);
+                }
+                chartData.push(repairsCount);
+            });
+
+            return chartData;
+        }
+
+        function getUpdatedDataForSales(employeesSales, minDate, maxDate) {
             var totalMonths = monthDiff(minDate, maxDate),
                 chartData = [];
 
