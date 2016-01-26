@@ -103,6 +103,10 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
+              connect().use(
+                '/fonts',
+                connect.static('./dist/fonts')
+              ),
               connect.static(appConfig.app)
             ];
           }
@@ -224,7 +228,7 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= yeoman.dist %>/fonts/*'
         ]
       }
     },
@@ -388,12 +392,18 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
-        }, {
-          expand: true,
-          dot: true,
-          cwd: 'bower_components/font-awesome/fonts',
-          src: ['*.*'],
-          dest: '<%= yeoman.dist %>/fonts'
+        // }, {
+        //   expand: true,
+        //   dot: true,
+        //   cwd: 'bower_components/font-awesome/fonts',
+        //   src: ['*.*'],
+        //   dest: '<%= yeoman.dist %>/fonts'
+        },{
+            expand: true,
+            dot: true,
+            cwd: 'bower_components/font-awesome', // change this for font-awesome
+            src: ['fonts/*.*'],
+            dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {

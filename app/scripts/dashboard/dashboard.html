@@ -1,5 +1,5 @@
-<div class="panel panel-primary panel-danger">
-    <div class="panel-heading"><h2 translate>{{::'dashboard.salesReport.title'}}</h2></div>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-line-chart fa-3x"></i><h2 translate>{{::'dashboard.salesReport.title'}}</h2></div>
     <div class="panel-body">
         <form name="salesForm">
             <div class="row">
@@ -30,15 +30,18 @@
                             <canvas id="sales-consultants" class="chart chart-line" chart-data="dashboardVm.charts.sales.data" chart-labels="dashboardVm.charts.sales.labels" chart-legend="true" chart-series="dashboardVm.charts.sales.series" chart-click="dashboardVm.charts.sales.onClick" ></canvas>
                         </div>
                         <div class="col-md-4">
-                            <h3 translate>{{::'dashboard.salesReport.list'}}</h3>
-                            <div class="pre-scrollable">
-                                <label ng-repeat="employee in dashboardVm.salesEmployees | orderBy:'name.last'">
-                                    <input type="checkbox"
-                                        data-checklist-model="dashboardVm.selectedSalesEmployees"
-                                        data-checklist-value="employee"
-                                        checklist-change="dashboardVm.updateChart(dashboardVm.charts.sales, employee, checked)"
-                                        ng-disabled="!checked && dashboardVm.selectedSalesEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
-                                </label>
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i>
+<h3 translate>{{::'dashboard.salesReport.list'}}</h3></div>
+                                <div class="panel-body pre-scrollable">
+                                    <label ng-repeat="employee in dashboardVm.salesEmployees | orderBy:'name.last'">
+                                        <input type="checkbox"
+                                            data-checklist-model="dashboardVm.selectedSalesEmployees"
+                                            data-checklist-value="employee"
+                                            checklist-change="dashboardVm.updateChart(dashboardVm.charts.sales, employee, checked)"
+                                            ng-disabled="!checked && dashboardVm.selectedSalesEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -47,8 +50,8 @@
         </form>
     </div>
 </div>
-<div class="panel panel-primary panel-danger">
-    <div class="panel-heading"><h2 translate>{{::'dashboard.serviceReport.title'}}</h2></div>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-cogs fa-3x"></i><h2 translate>{{::'dashboard.serviceReport.title'}}</h2></div>
     <div class="panel-body">
 
 
@@ -81,11 +84,13 @@
                             <canvas id="service-engineers" class="chart chart-line" chart-data="dashboardVm.charts.engineer.data" chart-labels="dashboardVm.charts.engineer.labels" chart-legend="true" chart-series="dashboardVm.charts.engineer.series" chart-click="dashboardVm.charts.engineer.onClick" ></canvas>
                         </div>
                         <div class="col-md-4">
-                            <h3 translate>{{::'dashboard.serviceReport.list'}}</h3>
-                            <div class="pre-scrollable">
-                                <label ng-repeat="employee in dashboardVm.serviceEmployees | orderBy:'name.last'">
-                                    <input type="checkbox" data-checklist-model="dashboardVm.selectedServiceEmployees" data-checklist-value="employee" ng-disabled="!checked && dashboardVm.selectedServiceEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
-                                </label>
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i><h3 translate>{{::'dashboard.serviceReport.list'}}</h3></div>
+                                <div class="panel-body pre-scrollable">
+                                    <label ng-repeat="employee in dashboardVm.serviceEmployees | orderBy:'name.last'">
+                                        <input type="checkbox" data-checklist-model="dashboardVm.selectedServiceEmployees" data-checklist-value="employee" ng-disabled="!checked && dashboardVm.selectedServiceEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
