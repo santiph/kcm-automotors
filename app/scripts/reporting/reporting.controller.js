@@ -107,6 +107,11 @@
         }
 
         controller.updateChart = function(chart, employee, checked) {
+
+            var minDate,
+                maxDate,
+                selectedEmployeesNames = [];
+
             // Is employee a Sales Consultant?
             if (employee.typeSales) {
 
@@ -125,10 +130,7 @@
                         salesPeriods = [];
 
                     var employeeSalesDates = [],
-                        employeesSales = [],
-                        minDate,
-                        maxDate,
-                        selectedEmployeesNames = [];
+                        employeesSales = [];
 
                     angular.forEach(controller.selectedSalesEmployees, function(employee, key) {
 
@@ -185,10 +187,7 @@
                 //Re-calculate chart values from selcted employees collections.
                 } else {
                     var employeeRepairsDates = [],
-                        employeesRepairs = [],
-                        minDate,
-                        maxDate,
-                        selectedEmployeesNames = [];
+                        employeesRepairs = [];
 
                     angular.forEach(controller.selectedServiceEmployees, function(employee, key) {
 

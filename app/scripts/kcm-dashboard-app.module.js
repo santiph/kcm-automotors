@@ -90,11 +90,13 @@
                     'title': 'Reports page',
                     'salesReport': {
                         'title': 'Sales Consultants Report',
-                        'list': 'Sales Consultants'
+                        'list': 'Sales Consultants',
+                        'selectionNotice': 'Please, select up to four people from the list below'
                     },
                     'serviceReport': {
                         'title': 'Service Engineers Report',
-                        'list': 'Service Engineers'
+                        'list': 'Service Engineers',
+                        'selectionNotice': 'Please, select up to four people from the list below'
                     },
                     'charts': {
                         'startDate': 'Start Date',
