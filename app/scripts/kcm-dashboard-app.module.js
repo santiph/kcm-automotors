@@ -91,12 +91,14 @@
                     'salesReport': {
                         'title': 'Sales Consultants Report',
                         'list': 'Sales Consultants',
-                        'selectionNotice': 'Please, select up to four people from the list below'
+                        'selectionNotice': 'Please, select up to four people from the list below',
+                        'total': 'Sales Amounts per Consultant'
                     },
                     'serviceReport': {
                         'title': 'Service Engineers Report',
                         'list': 'Service Engineers',
-                        'selectionNotice': 'Please, select up to four people from the list below'
+                        'selectionNotice': 'Please, select up to four people from the list below',
+                        'total': 'Cars Repaired per Engineer'
                     },
                     'charts': {
                         'startDate': 'Start Date',
