@@ -1,1 +1,101 @@
-<p>This is the reporting view.</p>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-line-chart fa-3x"></i><h2 translate>{{::'reports.salesReport.title'}}</h2></div>
+    <div class="panel-body">
+        <form name="salesForm">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label translate>{{::'reports.charts.startDate'}}</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{::reportingVm.datepicker.format}}" ng-model="reportingVm.datepicker.sales.startDate.model" is-open="reportingVm.datepicker.sales.startDate.isOpen" max-date="reportingVm.datepicker.sales.maxDate" min-date="reportingVm.datepicker.sales.minDate" date-disabled="reportingVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="reportingVm.datepicker.sales.startDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="col-xs-6">
+                    <label translate>{{::'reports.charts.endDate'}}</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{::reportingVm.datepicker.format}}" ng-model="reportingVm.datepicker.sales.endDate.model" is-open="reportingVm.datepicker.sales.endDate.isOpen" min-date="reportingVm.datepicker.sales.minDate" max-date="reportingVm.datepicker.sales.maxDate" date-disabled="reportingVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="reportingVm.datepicker.sales.endDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <canvas id="sales-consultants" class="chart chart-line" chart-data="reportingVm.charts.sales.data" chart-labels="reportingVm.charts.sales.labels" chart-legend="true" chart-series="reportingVm.charts.sales.series" chart-click="reportingVm.charts.sales.onClick" ></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i>
+<h3 translate>{{::'reports.salesReport.list'}}</h3></div>
+                                <div class="panel-body pre-scrollable">
+                                    <label ng-repeat="employee in reportingVm.salesEmployees | orderBy:'name.last'">
+                                        <input type="checkbox"
+                                            data-checklist-model="reportingVm.selectedSalesEmployees"
+                                            data-checklist-value="employee"
+                                            checklist-change="reportingVm.updateChart(reportingVm.charts.sales, employee, checked)"
+                                            ng-disabled="!checked && reportingVm.selectedSalesEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><i class="fa fa-cogs fa-3x"></i><h2 translate>{{::'reports.serviceReport.title'}}</h2></div>
+    <div class="panel-body">
+
+
+        <form name="serviceForm">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label translate>{{::'reports.charts.startDate'}}</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{::reportingVm.datepicker.format}}" ng-model="reportingVm.datepicker.service.startDate.model" is-open="reportingVm.datepicker.service.startDate.isOpen" max-date="reportingVm.datepicker.service.maxDate" min-date="reportingVm.datepicker.service.minDate" date-disabled="reportingVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="reportingVm.datepicker.service.startDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="col-xs-6">
+                    <label translate>{{::'reports.charts.endDate'}}</label>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{::reportingVm.datepicker.format}}" ng-model="reportingVm.datepicker.service.endDate.model" is-open="reportingVm.datepicker.service.endDate.isOpen" min-date="reportingVm.datepicker.service.minDate" max-date="reportingVm.datepicker.service.maxDate" date-disabled="reportingVm.datepicker.disabled(date, mode)" ng-required="true" close-text="Close" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="reportingVm.datepicker.service.endDate.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <canvas id="service-engineers" class="chart chart-line" chart-data="reportingVm.charts.engineer.data" chart-labels="reportingVm.charts.engineer.labels" chart-legend="true" chart-series="reportingVm.charts.engineer.series" chart-click="reportingVm.charts.engineer.onClick" ></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i><h3 translate>{{::'reports.serviceReport.list'}}</h3></div>
+                                <div class="panel-body pre-scrollable">
+                                    <label ng-repeat="employee in reportingVm.serviceEmployees | orderBy:'name.last'">
+                                        <input type="checkbox" data-checklist-model="reportingVm.selectedServiceEmployees" data-checklist-value="employee" ng-disabled="!checked && reportingVm.selectedServiceEmployees.length > 3"> {{::employee.name.last + ', ' + employee.name.first}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
