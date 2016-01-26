@@ -32,7 +32,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i><h3 translate>{{::'reports.salesReport.list'}}</h3></div>
+                                <div class="panel-heading">
+                                    <i class="fa fa-users fa-2x"></i><h3 translate>{{::'reports.salesReport.list'}}</h3>
+                                    <div><small translate>{{::'reports.salesReport.selectionNotice'}}</small> <i class="fa fa-info-circle" uib-tooltip="For a better visual analysis, limit has been set to 4 people."></i></div>
+                                </div>
                                 <div class="panel-body pre-scrollable">
                                     <label ng-repeat="employee in reportingVm.salesEmployees | orderBy:'name.last'">
                                         <input type="checkbox"
@@ -83,7 +86,9 @@
                         </div>
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-heading"><i class="fa fa-users fa-2x"></i><h3 translate>{{::'reports.serviceReport.list'}}</h3></div>
+                                <div class="panel-heading">
+                                    <i class="fa fa-users fa-2x"></i><h3 translate>{{::'reports.serviceReport.list'}}</h3>
+                                    <div><small translate>{{::'reports.serviceReport.selectionNotice'}}</small> <i class="fa fa-info-circle" uib-tooltip="For a better visual analysis, limit has been set to 4 people."></i></div></div>
                                 <div class="panel-body pre-scrollable">
                                     <label ng-repeat="employee in reportingVm.serviceEmployees | orderBy:'name.last'">
                                         <input  type="checkbox"
