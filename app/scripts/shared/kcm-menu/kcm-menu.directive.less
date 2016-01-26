@@ -1,7 +1,4 @@
 /* make sidebar nav vertical */
-@redColor: #e33a2b;
-@whiteColor: #FFFFFF;
-
 @media (min-width: 768px) {
     .sidebar-nav .nav-pills {
         .navbar-collapse {
@@ -18,20 +15,12 @@
             display: block;
             float: none;
             a {
-                color: @redColor;
+                border-radius: 0 4px 4px 0;
                 padding-bottom: 12px;
                 padding-top: 12px;
-                &:hover {
-                    background-color: @redColor;
-                    color: @whiteColor;
+                .fa {
+                    margin-right: 15px;
                 }
-            }
-
-            &.active a,
-            &.active a:hover
-            &.active a:focus {
-                background-color: @redColor;
-                color: @whiteColor;
             }
         }
     }
